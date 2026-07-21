@@ -31,7 +31,7 @@
   .nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px;}
   .brand{display:flex;align-items:center;gap:12px;cursor:pointer;}
   .brand .mark{width:30px;height:30px;border-radius:6px;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:17px;}
-  .brand .name{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-0.01em;}
+  .brand .name{font-family:var(--display);font-weight:600;font-size:16.5px;white-space:nowrap;letter-spacing:-0.01em;}
   .brand .name span{color:var(--ledger);}
   .menu{display:flex;align-items:center;gap:4px;}
   .menu button{font-family:var(--mono);font-size:12.5px;letter-spacing:0.04em;background:none;border:none;cursor:pointer;color:var(--ink-soft);padding:9px 12px;border-radius:6px;transition:color .15s ease, background .15s ease;}
@@ -93,6 +93,15 @@
   .section-head h2{font-size:clamp(30px,4vw,44px);margin-top:18px;}
   .section-head p{color:var(--ink-soft);font-size:17px;margin-top:18px;}
 
+  .sa{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .sa-inner{display:grid;grid-template-columns:0.9fr 1.1fr;gap:48px;align-items:center;}
+  .sa h2{font-size:clamp(26px,3.4vw,36px);margin-top:16px;}
+  .sa p.lede{color:var(--ink-soft);font-size:16px;margin-top:16px;}
+  .sa-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .sa-card{border:1px solid var(--line);border-radius:12px;padding:20px 18px;background:var(--paper);}
+  .sa-card .ac{font-family:var(--display);font-size:20px;font-weight:700;color:var(--ledger);}
+  .sa-card .nm{font-size:13px;color:var(--ink-soft);margin-top:8px;line-height:1.45;}
+  .sa-tier{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ochre);border:1px solid var(--ochre);border-radius:999px;padding:6px 12px;margin-top:22px;}
   .erp{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
   .erp-cols{display:grid;grid-template-columns:1.05fr 0.95fr;gap:54px;align-items:start;}
   .feature-list{list-style:none;padding:0;margin:0;}
@@ -145,6 +154,19 @@
   .quote .by .nm{font-family:var(--display);font-weight:600;font-size:15px;}
   .quote .by .ro{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px;}
 
+  .cases{display:flex;flex-direction:column;gap:24px;}
+  .case{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .case-head{padding:26px 28px 22px;border-bottom:1px solid var(--line-soft);display:flex;justify-content:space-between;gap:20px;align-items:flex-start;}
+  .case-head h3{font-size:22px;max-width:44ch;}
+  .case-head .plat{font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;border:1px solid var(--ledger);color:var(--ledger);background:rgba(31,92,76,0.06);border-radius:999px;padding:6px 12px;white-space:nowrap;}
+  .case-body{padding:4px 28px 24px;}
+  .case-row{display:grid;grid-template-columns:160px 1fr;gap:22px;padding:16px 0;border-bottom:1px solid var(--line-soft);}
+  .case-row:last-child{border-bottom:none;}
+  .case-row .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);padding-top:4px;}
+  .case-row .txt{font-size:15px;color:var(--ink-soft);}
+  .case-row.outcome .lbl{color:var(--ledger);}
+  .case-row.outcome .txt{color:var(--ink);font-weight:500;}
+  .case-note{margin-top:30px;font-family:var(--mono);font-size:11.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;max-width:76ch;line-height:1.7;}
   .contact-cols{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:start;}
   .field{margin-bottom:18px;}
   .field label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
@@ -197,6 +219,10 @@
     .erp-cols,.about-cols,.contact-cols{grid-template-columns:1fr;gap:32px;}
     .pull,.portrait{position:static;}
     .grid-3,.posts,.quotes{grid-template-columns:1fr;}
+    .sa-inner{grid-template-columns:1fr;gap:28px;}
+    .sa-cards{grid-template-columns:1fr;}
+    .case-row{grid-template-columns:1fr;gap:6px;}
+    .case-head{flex-direction:column;gap:12px;}
     .blog-featured,.subscribe-band .inner,.foot{grid-template-columns:1fr;}
     .blog-featured{padding:30px;}
     section{padding:60px 0;}
@@ -211,14 +237,14 @@
   <div class="wrap nav">
     <div class="brand" onclick="go('home')" tabindex="0" onkeydown="if(event.key==='Enter')go('home')">
       <div class="mark">C</div>
-      <div class="name">Captiva<span>.</span></div>
+      <div class="name">Captiva Consulting<span>.</span></div>
     </div>
     <nav class="menu" id="menu">
       <button data-pg="home" data-i18n="nav.home" onclick="go('home')">Home</button>
       <button data-pg="services" data-i18n="nav.services" onclick="go('services')">Services</button>
       <button data-pg="about" data-i18n="nav.about" onclick="go('about')">About</button>
       <button data-pg="blog" data-i18n="nav.blog" onclick="go('blog')">Blog</button>
-      <button data-pg="testimonials" data-i18n="nav.testimonials" onclick="go('testimonials')">Testimonials</button>
+      <button data-pg="cases" data-i18n="nav.cases" onclick="go('cases')">Case Studies</button>
       <button data-pg="contact" data-i18n="nav.contact" onclick="go('contact')">Contact</button>
       <button class="nav-cta" data-i18n="nav.cta" onclick="go('contact')">Get in touch</button>
     </nav>
@@ -243,13 +269,13 @@
     <div class="wrap">
       <span class="eyebrow" data-i18n="hero.eyebrow">Business consulting &amp; IT solutions · Est. 2005</span>
       <h1 data-i18n="hero.h1">The right fit, <span class="accent">on time</span> and within budget.</h1>
-      <p class="lede" data-i18n="hero.lede">Captiva Consulting is a boutique advisory practice helping organizations plan, govern, and land complex IT and ERP programs — with you, on your side of the table.</p>
+      <p class="lede" data-i18n="hero.lede">Captiva Consulting helps organizations plan, govern, and land complex IT and ERP programs — with you, on your side of the table.</p>
       <div class="hero-actions">
         <button class="btn btn-primary" data-i18n="hero.cta1" onclick="go('services')">Explore our services →</button>
         <button class="btn btn-ghost" data-i18n="hero.cta2" onclick="go('contact')">Start a conversation</button>
       </div>
 
-      <div class="table-figure" aria-label="Captiva sits on the client side of the table, independent from the system integrator">
+      <div class="table-figure" aria-label="Captiva Consulting sits on the client side of the table, independent from the system integrator">
         <div class="side">
           <div class="role" data-i18n="table.s1role">The delivery side</div>
           <div class="who" data-i18n="table.s1who">System Integrator</div>
@@ -259,8 +285,8 @@
         <div class="divider"><span class="divlabel" data-i18n="table.divider">THE TABLE</span></div>
         <div class="side">
           <div class="role" data-i18n="table.s2role">Your side</div>
-          <div class="who you" data-i18n="table.s2who">Your organization + Captiva</div>
-          <div class="desc" data-i18n="table.s2desc">Owns the outcome. Captiva represents your interests as the owner's advisor — never the integrator.</div>
+          <div class="who you" data-i18n="table.s2who">Your organization + Captiva Consulting</div>
+          <div class="desc" data-i18n="table.s2desc">Owns the outcome. Captiva Consulting represents your interests as the owner's advisor — never the integrator.</div>
           <span class="tag captiva" data-i18n="table.s2tag">Client-side · independent</span>
         </div>
       </div>
@@ -288,6 +314,22 @@
       </div>
     </div>
   </section>
+
+  <section class="sa">
+    <div class="wrap sa-inner">
+      <div>
+        <span class="eyebrow" data-i18n="sa.eyebrow">Government of Canada procurement</span>
+        <h2 data-i18n="sa.h2">Pre-qualified and ready to contract.</h2>
+        <p class="lede" data-i18n="sa.lede">Captiva Consulting holds pre-qualified supplier status under the federal supply arrangements most commonly used to engage professional services — so departments can contract through channels they already use.</p>
+        <span class="sa-tier" data-i18n="sa.tier">Tier 1 pre-qualified supplier</span>
+      </div>
+      <div class="sa-cards">
+        <div class="sa-card"><div class="ac">TBIPS</div><div class="nm" data-i18n="sa.c1">Task-Based Informatics Professional Services</div></div>
+        <div class="sa-card"><div class="ac">TSPS</div><div class="nm" data-i18n="sa.c2">Task and Solutions Professional Services</div></div>
+        <div class="sa-card"><div class="ac">ProServices</div><div class="nm" data-i18n="sa.c3">Supply arrangement for professional services below the trade-agreement threshold</div></div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <!-- ============ SERVICES ============ -->
@@ -297,7 +339,7 @@
       <div class="section-head">
         <span class="eyebrow" data-i18n="services.eyebrow">What we do</span>
         <h2 data-i18n="services.h2">Independent, client-side advisory.</h2>
-        <p data-i18n="services.lede">Captiva works on one side of the table: yours. We represent the client's interest through complex IT and ERP programs — never as the system integrator. ERP implementation is where that independence matters most, and where our record is sharpest: multiple projects delivered on time and on budget across multiple platforms for the Government of Canada.</p>
+        <p data-i18n="services.lede">Captiva Consulting works on one side of the table: yours. We represent the client's interest through complex IT and ERP programs — never as the system integrator. ERP implementation is where that independence matters most, and where our record is sharpest: multiple projects delivered on time and on budget across both SaaS ERP and SAP for the Government of Canada.</p>
       </div>
       <div class="erp-cols">
         <ul class="feature-list">
@@ -305,14 +347,15 @@
           <li><span class="k">02</span><div><h4 data-i18n="feat.2h">Division-of-labor framework</h4><p data-i18n="feat.2p">Clear boundaries between client and integrator, established early — so responsibilities never fall through the gap mid-build.</p></div></li>
           <li><span class="k">03</span><div><h4 data-i18n="feat.3h">End-to-end testing &amp; cutover readiness</h4><p data-i18n="feat.3p">We prepare your team for end-to-end testing, data validation, and a controlled go-live rather than a hopeful one.</p></div></li>
           <li><span class="k">04</span><div><h4 data-i18n="feat.4h">Decision &amp; risk support</h4><p data-i18n="feat.4p">An experienced counterpart to a seasoned SI, so first-time client decisions on configuration and the chart of accounts are made with eyes open.</p></div></li>
-          <li><span class="k">05</span><div><h4 data-i18n="feat.5h">Hypercare &amp; transition</h4><p data-i18n="feat.5p">We plan the handover to steady-state operations and the train-the-trainer path that lets your people own the system after the SI leaves.</p></div></li>
+          <li><span class="k">05</span><div><h4 data-i18n="feat.6h">Security assessment &amp; authorization (SA&amp;A)</h4><p data-i18n="feat.6p"></p></div></li>
+          <li><span class="k">06</span><div><h4 data-i18n="feat.5h">Hypercare &amp; transition</h4><p data-i18n="feat.5p">We plan the handover to steady-state operations and the train-the-trainer path that lets your people own the system after the SI leaves.</p></div></li>
         </ul>
         <aside class="pull">
           <span class="eyebrow" data-i18n="pull.eyebrow">Augment, not replace</span>
           <h3 data-i18n="pull.h3">We make you a better client.</h3>
-          <p data-i18n="pull.p">Internal teams can run an ERP program — until they meet a seasoned integrator for the first time. Captiva closes that experience gap on your side, complementing your staff and partnering constructively with the SI rather than competing with it.</p>
+          <p data-i18n="pull.p">Internal teams can run an ERP program — until they meet a seasoned integrator for the first time. Captiva Consulting closes that experience gap on your side, complementing your staff and partnering constructively with the SI rather than competing with it.</p>
           <div class="stat">
-            <div><span class="big" data-i18n="pull.s1big">ERP delivered in GoC</span><!--<span class="lbl" data-i18n="pull.s1lbl">ERP delivered in GoC</span>--></div>
+            <div><span class="big" data-i18n="pull.s1big">SaaS ERP + SAP</span><span class="lbl" data-i18n="pull.s1lbl">ERP delivered in GoC</span></div>
             <div><span class="big" data-i18n="pull.s2big">On time</span><span class="lbl" data-i18n="pull.s2lbl">&amp; on budget, every engagement</span></div>
           </div>
         </aside>
@@ -346,9 +389,9 @@
       </div>
       <div class="about-cols">
         <div class="portrait">
-          <img src="profile_pic_July_2026-a.jpg" alt="Martin Côté" style="width:100%;height:auto;display:block;object-fit:cover;">
+          <div class="ph" data-i18n="portrait.ph">[ Add your photo here<br>portrait, 4:5 ]</div>
           <div class="id">
-            <div class="nm" data-i18n="name.nm">Martin Côté, B.Com.,PMP</div>
+            <div class="nm" data-i18n="name.nm">Martin [Last Name]</div>
             <div class="ti" data-i18n="portrait.title">Principal Consultant · Captiva Consulting</div>
             <div class="meta">
               <div><span data-i18n="portrait.mBasedLbl">Based in</span><span data-i18n="portrait.mBasedVal">Ottawa, ON</span></div>
@@ -359,11 +402,11 @@
         </div>
         <div class="prose">
           <p data-i18n="about.p1">Martin is the Principal Consultant at Captiva Consulting, where he represents organizations as the owner's advisor through complex IT and ERP programs. His focus is client-side professional services — supporting and managing implementations from the buyer's seat, independent of the system integrator delivering the work.</p>
-          <p data-i18n="about.p2">He has delivered multiple ERP projects on time and on budget for the Government of Canada, across multiple platforms. His value is the experienced counterpart a first-time client needs when sitting across from a seasoned integrator: someone who knows where programs drift, how scope erodes, and how to keep the engagement constructive without giving ground that matters.</p>
+          <p data-i18n="about.p2">He has delivered multiple ERP projects on time and on budget for the Government of Canada, across both SaaS ERP and SAP. His value is the experienced counterpart a first-time client needs when sitting across from a seasoned integrator: someone who knows where programs drift, how scope erodes, and how to keep the engagement constructive without giving ground that matters.</p>
           <h3 data-i18n="about.h3focus">Areas of focus</h3>
           <div class="chips">
             <span class="chip" data-i18n="chip.1">Client-side ERP delivery</span>
-            <span class="chip" data-i18n="chip.2">Workday</span>
+            <span class="chip" data-i18n="chip.2">SaaS ERP</span>
             <span class="chip" data-i18n="chip.3">SAP</span>
             <span class="chip" data-i18n="chip.4">Government of Canada</span>
             <span class="chip" data-i18n="chip.5">Owner's representative</span>
@@ -374,6 +417,7 @@
           </div>
           <h3 data-i18n="about.h3how">How Martin works</h3>
           <p data-i18n="about.pHow">Direct, responsive, and pragmatic. He sets clear boundaries early, reduces friction for everyone at the table, and optimizes for the long-standing relationship that tends to follow a well-run first engagement.</p>
+          <p style="font-family:var(--mono);font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;" data-i18n="about.note">Editable placeholder — replace bracketed items, the bio, and credentials with your final copy and any certifications (e.g. PMP), supply arrangements, or references you'd like to feature.</p>
         </div>
       </div>
     </div>
@@ -392,37 +436,80 @@
       <article class="blog-featured" onclick="alert('Link this card to your first full blog post.')">
         <div>
           <div class="cat" data-i18n="blog.featCat">Featured</div>
-          <h3 data-i18n="blog.featH">Your Internal Team Can Run This Project. They Shouldn't Run It Alone.</h3>
-          <p data-i18n="blog.featP">Departments often assume internal staff can handle the client-side PM role on an ERP implementation. The real question isn't whether they're capable — it's whether they're negotiating against an experienced systems integrator without anyone in their corner who's done it before. A look at what the Phoenix pay system taught the federal government about independent project oversight, and why "augment, not replace" is the better model. </p>
+          <h3 data-i18n="blog.featH">Why your internal team needs an independent PM — not a bigger SI contract</h3>
+          <p data-i18n="blog.featP">The most common — and most expensive — misconception in ERP onboarding is that internal staff can absorb the program-management role. Here's the risk math that says otherwise.</p>
         </div>
         <button class="btn btn-ghost" style="border-color:rgba(255,255,255,0.3);color:#fff;" data-i18n="blog.featBtn">Read the post →</button>
       </article>
-      <!--
       <div class="posts">
         <article class="post" onclick="alert('Link this card to a blog post.')"><div class="top"></div><div class="body"><div class="cat" data-i18n="blog.p1cat">Governance</div><h3 data-i18n="blog.p1h">Drawing the division-of-labor line before kickoff</h3><p data-i18n="blog.p1p">A simple framework for agreeing who owns what between client and integrator — before the gaps become change orders.</p><div class="date" data-i18n="blog.p1date">Draft · placeholder</div></div></article>
         <article class="post" onclick="alert('Link this card to a blog post.')"><div class="top"></div><div class="body"><div class="cat" data-i18n="blog.p2cat">Delivery</div><h3 data-i18n="blog.p2h">What end-to-end testing really asks of the client</h3><p data-i18n="blog.p2p">Testing fails quietly when the client side isn't prepared. A checklist for showing up ready.</p><div class="date" data-i18n="blog.p2date">Draft · placeholder</div></div></article>
         <article class="post" onclick="alert('Link this card to a blog post.')"><div class="top"></div><div class="body"><div class="cat" data-i18n="blog.p3cat">Public sector</div><h3 data-i18n="blog.p3h">Buying ERP advisory in a corporate-history world</h3><p data-i18n="blog.p3p">How procurement's shift toward corporate delivery history is reshaping the way departments engage specialist consultants.</p><div class="date" data-i18n="blog.p3date">Draft · placeholder</div></div></article>
       </div>
-      -->
     </div>
   </section>
 </div>
 
-<!-- ============ TESTIMONIALS ============ -->
-<div class="page" id="testimonials">
+<!-- ============ CASE STUDIES ============ -->
+<div class="page" id="cases">
   <section>
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow" data-i18n="test.eyebrow">What clients say</span>
-        <h2 data-i18n="test.h2">Repeat engagements speak for themselves.</h2>
+        <span class="eyebrow" data-i18n="case.eyebrow">Case studies</span>
+        <h2 data-i18n="case.h2">What the work actually looks like.</h2>
+        <p data-i18n="case.lede">Client organizations are not named. Each engagement below is described at sector level to respect confidentiality and security requirements.</p>
       </div>
-      <!--
-      <div class="quotes">
-        <figure class="quote"><div class="mark">&ldquo;</div><p data-i18n="q1p">Captiva gave us an experienced voice on our side of the table. Decisions that would have caught us out were flagged early — and our go-live held its date.</p><figcaption class="by"><div class="nm" data-i18n="q1nm">[Client name]</div><div class="ro" data-i18n="q1ro">Director, Financial Systems · Federal Department</div></figcaption></figure>
-        <figure class="quote"><div class="mark">&ldquo;</div><p data-i18n="q2p">The division-of-labor framework alone paid for the engagement. We always knew who owned what, and the integrator relationship stayed constructive throughout.</p><figcaption class="by"><div class="nm" data-i18n="q2nm">[Client name]</div><div class="ro" data-i18n="q2ro">Project Sponsor · Public Sector</div></figcaption></figure>
-        <figure class="quote"><div class="mark">&ldquo;</div><p data-i18n="q3p">Responsive, pragmatic, and genuinely independent. We've brought Captiva back for every phase since — exactly the long-standing relationship they describe.</p><figcaption class="by"><div class="nm" data-i18n="q3nm">[Client name]</div><div class="ro" data-i18n="q3ro">CFO · Health Sector Organization</div></figcaption></figure>
+      <div class="cases">
+      <article class="case">
+        <div class="case-head">
+          <h3 data-i18n="caseA.t"></h3>
+          <span class="plat" data-i18n="caseA.tag"></span>
+        </div>
+        <div class="case-body">
+          <div class="case-row"><div class="lbl" data-i18n="case.lblSit">Situation</div><div class="txt" data-i18n="caseA.sit"></div></div>
+          <div class="case-row"><div class="lbl" data-i18n="case.lblStake">What was at stake</div><div class="txt" data-i18n="caseA.stake"></div></div>
+          <div class="case-row"><div class="lbl" data-i18n="case.lblDid">What we did</div><div class="txt" data-i18n="caseA.did"></div></div>
+          <div class="case-row outcome"><div class="lbl" data-i18n="case.lblOut">Outcome</div><div class="txt" data-i18n="caseA.out"></div></div>
+        </div>
+      </article>
+      <article class="case">
+        <div class="case-head">
+          <h3 data-i18n="caseB.t"></h3>
+          <span class="plat" data-i18n="caseB.tag"></span>
+        </div>
+        <div class="case-body">
+          <div class="case-row"><div class="lbl" data-i18n="case.lblSit">Situation</div><div class="txt" data-i18n="caseB.sit"></div></div>
+          <div class="case-row"><div class="lbl" data-i18n="case.lblStake">What was at stake</div><div class="txt" data-i18n="caseB.stake"></div></div>
+          <div class="case-row"><div class="lbl" data-i18n="case.lblDid">What we did</div><div class="txt" data-i18n="caseB.did"></div></div>
+          <div class="case-row outcome"><div class="lbl" data-i18n="case.lblOut">Outcome</div><div class="txt" data-i18n="caseB.out"></div></div>
+        </div>
+      </article>
+      <article class="case">
+        <div class="case-head">
+          <h3 data-i18n="caseC.t"></h3>
+          <span class="plat" data-i18n="caseC.tag"></span>
+        </div>
+        <div class="case-body">
+          <div class="case-row"><div class="lbl" data-i18n="case.lblSit">Situation</div><div class="txt" data-i18n="caseC.sit"></div></div>
+          <div class="case-row"><div class="lbl" data-i18n="case.lblStake">What was at stake</div><div class="txt" data-i18n="caseC.stake"></div></div>
+          <div class="case-row"><div class="lbl" data-i18n="case.lblDid">What we did</div><div class="txt" data-i18n="caseC.did"></div></div>
+          <div class="case-row outcome"><div class="lbl" data-i18n="case.lblOut">Outcome</div><div class="txt" data-i18n="caseC.out"></div></div>
+        </div>
+      </article>
+      <article class="case">
+        <div class="case-head">
+          <h3 data-i18n="caseD.t"></h3>
+          <span class="plat" data-i18n="caseD.tag"></span>
+        </div>
+        <div class="case-body">
+          <div class="case-row"><div class="lbl" data-i18n="case.lblSit">Situation</div><div class="txt" data-i18n="caseD.sit"></div></div>
+          <div class="case-row"><div class="lbl" data-i18n="case.lblStake">What was at stake</div><div class="txt" data-i18n="caseD.stake"></div></div>
+          <div class="case-row"><div class="lbl" data-i18n="case.lblDid">What we did</div><div class="txt" data-i18n="caseD.did"></div></div>
+          <div class="case-row outcome"><div class="lbl" data-i18n="case.lblOut">Outcome</div><div class="txt" data-i18n="caseD.out"></div></div>
+        </div>
+      </article>
       </div>
-      -->
+      <p class="case-note" data-i18n="case.note">References are available on request, subject to client approval.</p>
     </div>
   </section>
 </div>
@@ -437,33 +524,23 @@
         <p data-i18n="contact.lede">Whether you're selecting a platform, mid-implementation, or planning the next phase, a short conversation is the best place to start.</p>
       </div>
       <div class="contact-cols">
-        <!--
         <div>
           <div class="field"><label for="c-name" data-i18n="form.nameLbl">Name</label><input id="c-name" type="text" data-i18n-ph="form.namePh" placeholder="Your name" /></div>
           <div class="field"><label for="c-org" data-i18n="form.orgLbl">Organization</label><input id="c-org" type="text" data-i18n-ph="form.orgPh" placeholder="Department or company" /></div>
           <div class="field"><label for="c-email" data-i18n="form.emailLbl">Email</label><input id="c-email" type="email" data-i18n-ph="form.emailPh" placeholder="you@organization.ca" /></div>
           <div class="field"><label for="c-msg" data-i18n="form.msgLbl">How can we help?</label><textarea id="c-msg" data-i18n-ph="form.msgPh" placeholder="A sentence or two about your program and where you are in it."></textarea></div>
           <button class="btn btn-primary" data-i18n="form.send" onclick="sendContact()">Send message →</button>
-        </div>
-        -->
-        <div>
-          <form action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="13bab806-f0b4-4877-bc04-ab99d142189b">
-            <div class="field"><label for="c-name" data-i18n="form.nameLbl">Name</label><input id="c-name" type="text" name="name" data-i18n-ph="form.namePh" placeholder="Your name" /></div>
-            <!--<div class="field"><label for="c-org" data-i18n="form.orgLbl">Organization</label><input id="c-org" type="text" data-i18n-ph="form.orgPh" placeholder="Department or company" /></div>-->
-            <div class="field"><label for="c-email" data-i18n="form.emailLbl">Email</label><input id="c-email" type="email" name="email" data-i18n-ph="form.emailPh" placeholder="you@organization.ca" /></div>
-            <div class="field"><label for="c-msg" data-i18n="form.msgLbl">How can we help?</label><textarea id="c-msg" name="message" required data-i18n-ph="form.msgPh" placeholder="A sentence or two about your program and where you are in it."></textarea></div>
-            <button class="btn btn-primary" data-i18n="form.send" type="submit">Send message →</button>
-          </form>
+          <div class="ok-msg" id="contactOk" data-i18n="form.ok">Thanks — your message is ready. Connect this form to your email service or inbox to receive it.</div>
+          <div class="form-note" data-i18n="form.note">This form is a front-end placeholder. Wire it to your email service (e.g. Formspree, or a mailto link) before launch.</div>
         </div>
         <aside class="contact-aside">
           <span class="eyebrow" data-i18n="aside.eyebrow">Captiva Consulting</span>
           <h3 data-i18n="aside.h3">Direct &amp; responsive.</h3>
-          <div class="row"><span class="lbl" data-i18n="aside.emailLbl">Email</span><span class="val">martin@captivaconsulting.ca</span></div>
-          <div class="row"><span class="lbl" data-i18n="aside.phoneLbl">Phone</span><span class="val" data-i18n="aside.phoneVal">613-298-9145</span></div>
+          <div class="row"><span class="lbl" data-i18n="aside.emailLbl">Email</span><span class="val">hello@captivaconsulting.ca</span></div>
+          <div class="row"><span class="lbl" data-i18n="aside.phoneLbl">Phone</span><span class="val" data-i18n="aside.phoneVal">[Add phone]</span></div>
           <div class="row"><span class="lbl" data-i18n="aside.locLbl">Location</span><span class="val" data-i18n="aside.locVal">Ottawa, Ontario, Canada</span></div>
-          <div class="row"><span class="lbl" data-i18n="aside.prinLbl">Principal</span><span class="val" data-i18n="name.nm">Martin Côté, B.Com.,PMP</span></div>
-          <!--<p style="color:#B9C4D2;font-size:14px;margin-top:22px;" data-i18n="aside.note">Replace the contact details above with your live address, phone, and email.</p>-->
+          <div class="row"><span class="lbl" data-i18n="aside.prinLbl">Principal</span><span class="val" data-i18n="name.nm">Martin [Last Name]</span></div>
+          <p style="color:#B9C4D2;font-size:14px;margin-top:22px;" data-i18n="aside.note">Replace the contact details above with your live address, phone, and email.</p>
         </aside>
       </div>
     </div>
@@ -492,7 +569,7 @@
   <div class="wrap">
     <div class="foot">
       <div>
-        <div class="brand"><div class="mark">C</div><div class="name">Captiva</div></div>
+        <div class="brand"><div class="mark">C</div><div class="name">Captiva Consulting</div></div>
         <p data-i18n="footer.p">Independent business consulting and client-side IT &amp; ERP advisory. On your side of the table since 2005.</p>
       </div>
       <div>
@@ -504,7 +581,7 @@
       </div>
       <div>
         <h5 data-i18n="footer.moreH">More</h5>
-        <button class="flink" data-i18n="nav.testimonials" onclick="go('testimonials')">Testimonials</button>
+        <button class="flink" data-i18n="nav.cases" onclick="go('cases')">Case Studies</button>
         <button class="flink" data-i18n="nav.contact" onclick="go('contact')">Contact</button>
         <button class="flink" data-i18n="subscribe.btn" onclick="go('contact')">Subscribe</button>
       </div>
@@ -523,13 +600,13 @@
     "nav.services":{en:"Services",fr:"Services"},
     "nav.about":{en:"About",fr:"Profil"},
     "nav.blog":{en:"Blog",fr:"Blogue"},
-    "nav.testimonials":{en:"Testimonials",fr:"Témoignages"},
+    "nav.cases":{en:"Case Studies",fr:"Études de cas"},
     "nav.contact":{en:"Contact",fr:"Contact"},
     "nav.cta":{en:"Get in touch",fr:"Nous joindre"},
 
     "hero.eyebrow":{en:"Business consulting &amp; IT solutions · Est. 2005",fr:"Services-conseils d'affaires et solutions TI · Depuis 2005"},
     "hero.h1":{en:"The right fit, <span class=\"accent\">on time</span> and within budget.",fr:"La solution adaptée, <span class=\"accent\">dans les délais</span> et le budget."},
-    "hero.lede":{en:"Captiva Consulting is a boutique advisory practice helping organizations plan, govern, and land complex IT and ERP programs — with you, on your side of the table.",fr:"Captiva Consulting est un cabinet-conseil spécialisé qui aide les organisations à planifier, encadrer et mener à bien des programmes TI et PGI complexes — à vos côtés, de votre côté de la table."},
+    "hero.lede":{en:"Captiva Consulting helps organizations plan, govern, and land complex IT and ERP programs — with you, on your side of the table.",fr:"Captiva Consulting aide les organisations à planifier, encadrer et mener à bien des programmes TI et PGI complexes — à vos côtés, de votre côté de la table."},
     "hero.cta1":{en:"Explore our services →",fr:"Découvrir nos services →"},
     "hero.cta2":{en:"Start a conversation",fr:"Entamer la conversation"},
 
@@ -539,8 +616,8 @@
     "table.s1tag":{en:"Vendor",fr:"Fournisseur"},
     "table.divider":{en:"THE TABLE",fr:"LA TABLE"},
     "table.s2role":{en:"Your side",fr:"Votre côté"},
-    "table.s2who":{en:"Your organization + Captiva",fr:"Votre organisation + Captiva"},
-    "table.s2desc":{en:"Owns the outcome. Captiva represents your interests as the owner's advisor — never the integrator.",fr:"Responsable du résultat. Captiva représente vos intérêts à titre de conseiller du propriétaire — jamais l'intégrateur."},
+    "table.s2who":{en:"Your organization + Captiva Consulting",fr:"Votre organisation + Captiva Consulting"},
+    "table.s2desc":{en:"Owns the outcome. Captiva Consulting represents your interests as the owner's advisor — never the integrator.",fr:"Responsable du résultat. Captiva Consulting représente vos intérêts à titre de conseiller du propriétaire — jamais l'intégrateur."},
     "table.s2tag":{en:"Client-side · independent",fr:"Côté client · indépendant"},
 
     "statement.eyebrow":{en:"Our approach",fr:"Notre approche"},
@@ -556,14 +633,22 @@
     "value.c3h":{en:"Built for repeat work",fr:"Conçu pour durer"},
     "value.c3p":{en:"Most engagements lead to the next one. We optimize for a long-standing relationship, not a single invoice.",fr:"La plupart des mandats mènent au suivant. Nous visons une relation durable, pas une seule facture."},
 
+    "sa.eyebrow":{en:"Government of Canada procurement",fr:"Approvisionnement du gouvernement du Canada"},
+    "sa.h2":{en:"Pre-qualified and ready to contract.",fr:"Préqualifiée et prête à contracter."},
+    "sa.lede":{en:"Captiva Consulting holds pre-qualified supplier status under the federal supply arrangements most commonly used to engage professional services — so departments can contract through channels they already use.",fr:"Captiva Consulting détient le statut de fournisseur préqualifié dans le cadre des arrangements en matière d'approvisionnement fédéraux les plus utilisés pour retenir des services professionnels — les ministères peuvent donc contracter par des voies qu'ils connaissent déjà."},
+    "sa.tier":{en:"Tier 1 pre-qualified supplier",fr:"Fournisseur préqualifié de niveau 1"},
+    "sa.c1":{en:"Task-Based Informatics Professional Services",fr:"Services professionnels en informatique centrés sur les tâches"},
+    "sa.c2":{en:"Task and Solutions Professional Services",fr:"Services professionnels en informatique centrés sur les tâches et les solutions"},
+    "sa.c3":{en:"Supply arrangement for professional services below the trade-agreement threshold",fr:"Arrangement en matière d'approvisionnement pour services professionnels sous le seuil des accords commerciaux"},
+
     "services.eyebrow":{en:"What we do",fr:"Ce que nous faisons"},
     "services.h2":{en:"Independent, client-side advisory.",fr:"Des services-conseils indépendants, du côté client."},
-    "services.lede":{en:"Captiva works on one side of the table: yours. We represent the client's interest through complex IT and ERP programs — never as the system integrator. ERP implementation is where that independence matters most, and where our record is sharpest: multiple projects delivered on time and on budget across multiple plaforms for the Government of Canada.",fr:"Captiva ne travaille que d'un seul côté de la table : le vôtre. Nous représentons l'intérêt du client tout au long de programmes TI et PGI complexes — jamais à titre d'intégrateur de systèmes. C'est dans l'implantation de PGI que cette indépendance compte le plus, et que notre feuille de route est la plus solide : plusieurs projets livrés dans les délais et le budget, sur plusieurs platformes, pour le gouvernement du Canada."},
+    "services.lede":{en:"Captiva Consulting works on one side of the table: yours. We represent the client's interest through complex IT and ERP programs — never as the system integrator. ERP implementation is where that independence matters most, and where our record is sharpest: multiple projects delivered on time and on budget across both SaaS ERP and SAP for the Government of Canada.",fr:"Captiva Consulting ne travaille que d'un seul côté de la table : le vôtre. Nous représentons l'intérêt du client tout au long de programmes TI et PGI complexes — jamais à titre d'intégrateur de systèmes. C'est dans l'implantation de PGI que cette indépendance compte le plus, et que notre feuille de route est la plus solide : plusieurs projets livrés dans les délais et le budget, sur SaaS ERP comme sur SAP, pour le gouvernement du Canada."},
 
     "feat.1h":{en:"Scope &amp; SOW stewardship",fr:"Gestion de la portée et de l'énoncé des travaux"},
     "feat.1p":{en:"We hold the line on scope, review change orders before they land, and keep the statement of work honest as the program evolves.",fr:"Nous maintenons la portée, examinons les ordres de modification avant qu'ils ne s'imposent et gardons l'énoncé des travaux fidèle à mesure que le programme évolue."},
     "feat.2h":{en:"Division-of-labor framework",fr:"Cadre de répartition des responsabilités"},
-    "feat.2p":{en:"Clear boundaries between client and integrator, established early — so responsibilities never fall through the gap mid-build.",fr:"Des frontières claires entre le client et l'intégrateur, établies tôt — pour qu'aucune responsabilité ne tombe entre deux chaises en cours de route."},
+    "feat.2p":{en:"Clear boundaries between client and integrator, established early — so responsibilities never fall through the gap mid-build. We bring the same clarity inside your own team, defining who holds which decision, approval and delivery role internally so the client side speaks with one voice.",fr:"Des frontières claires entre le client et l'intégrateur, établies tôt — pour qu'aucune responsabilité ne tombe entre deux chaises en cours de route. Nous apportons la même clarté au sein de votre propre équipe, en précisant qui détient quel rôle décisionnel, d'approbation et de livraison à l'interne, afin que le côté client parle d'une seule voix."},
     "feat.3h":{en:"End-to-end testing &amp; cutover readiness",fr:"Essais de bout en bout et préparation à la mise en service"},
     "feat.3p":{en:"We prepare your team for end-to-end testing, data validation, and a controlled go-live rather than a hopeful one.",fr:"Nous préparons votre équipe aux essais de bout en bout, à la validation des données et à une mise en service maîtrisée plutôt qu'improvisée."},
     "feat.4h":{en:"Decision &amp; risk support",fr:"Appui à la décision et au risque"},
@@ -571,11 +656,14 @@
     "feat.5h":{en:"Hypercare &amp; transition",fr:"Soutien intensif et transition"},
     "feat.5p":{en:"We plan the handover to steady-state operations and the train-the-trainer path that lets your people own the system after the SI leaves.",fr:"Nous planifions le transfert vers l'exploitation courante et la formation des formateurs pour que vos équipes s'approprient le système une fois l'intégrateur parti."},
 
+    "feat.6h":{en:"Security assessment &amp; authorization (SA&amp;A)",fr:"Évaluation et autorisation de sécurité (EAS)"},
+    "feat.6p":{en:"Support through the SA&amp;A process under ITSG-33 — articulating security requirements, coordinating with security practitioners and the authorities involved, and keeping authorization on the critical path rather than discovering it late. We also support the wider technical workstreams: integration design, data conversion, and environment and release planning.",fr:"Un accompagnement tout au long du processus d'EAS selon l'ITSG-33 — formulation des exigences de sécurité, coordination avec les spécialistes de la sécurité et les autorités concernées, et maintien de l'autorisation sur le chemin critique plutôt qu'en découverte tardive. Nous appuyons également les volets techniques plus larges : conception des intégrations, conversion des données, planification des environnements et des versions."},
+
     "pull.eyebrow":{en:"Augment, not replace",fr:"Compléter, pas remplacer"},
     "pull.h3":{en:"We make you a better client.",fr:"Nous faisons de vous un meilleur client."},
-    "pull.p":{en:"Internal teams can run an ERP program — until they meet a seasoned integrator for the first time. Captiva closes that experience gap on your side, complementing your staff and partnering constructively with the SI rather than competing with it.",fr:"Une équipe interne peut mener un programme de PGI — jusqu'à ce qu'elle affronte un intégrateur aguerri pour la première fois. Captiva comble cet écart d'expérience de votre côté, en complément de votre personnel et en collaborant de façon constructive avec l'intégrateur plutôt qu'en le concurrençant."},
-    "pull.s1big":{en:"ERP delivered in GoC",fr:"PGI livrés au gouv. du Canada"},
-    //"pull.s1lbl":{en:"ERP delivered in GoC",fr:"PGI livrés au gouv. du Canada"},
+    "pull.p":{en:"Internal teams can run an ERP program — until they meet a seasoned integrator for the first time. Captiva Consulting closes that experience gap on your side, complementing your staff and partnering constructively with the SI rather than competing with it.",fr:"Une équipe interne peut mener un programme de PGI — jusqu'à ce qu'elle affronte un intégrateur aguerri pour la première fois. Captiva Consulting comble cet écart d'expérience de votre côté, en complément de votre personnel et en collaborant de façon constructive avec l'intégrateur plutôt qu'en le concurrençant."},
+    "pull.s1big":{en:"SaaS ERP + SAP",fr:"SaaS ERP + SAP"},
+    "pull.s1lbl":{en:"ERP delivered in GoC",fr:"PGI livrés au gouv. du Canada"},
     "pull.s2big":{en:"On time",fr:"Dans les délais"},
     "pull.s2lbl":{en:"&amp; on budget, every engagement",fr:"et le budget, chaque mandat"},
 
@@ -592,7 +680,7 @@
     "about.eyebrow":{en:"Principal Consultant",fr:"Consultant principal"},
     "about.h2":{en:"The person across the table — working for you.",fr:"La personne en face — qui travaille pour vous."},
     "portrait.ph":{en:"[ Add your photo here<br>portrait, 4:5 ]",fr:"[ Ajoutez votre photo ici<br>portrait, 4:5 ]"},
-    "name.nm":{en:"Martin Côté, B.Com., PMP",fr:"Martin Côté, B.Com., PMP"},
+    "name.nm":{en:"Martin [Last Name]",fr:"Martin [Nom de famille]"},
     "portrait.title":{en:"Principal Consultant · Captiva Consulting",fr:"Consultant principal · Captiva Consulting"},
     "portrait.mBasedLbl":{en:"Based in",fr:"Établi à"},
     "portrait.mBasedVal":{en:"Ottawa, ON",fr:"Ottawa (Ontario)"},
@@ -600,10 +688,10 @@
     "portrait.mFocusVal":{en:"Client-side ERP",fr:"PGI côté client"},
     "portrait.mSinceLbl":{en:"Since",fr:"Depuis"},
     "about.p1":{en:"Martin is the Principal Consultant at Captiva Consulting, where he represents organizations as the owner's advisor through complex IT and ERP programs. His focus is client-side professional services — supporting and managing implementations from the buyer's seat, independent of the system integrator delivering the work.",fr:"Martin est le consultant principal de Captiva Consulting, où il représente les organisations à titre de conseiller du propriétaire tout au long de programmes TI et PGI complexes. Il se consacre aux services professionnels côté client — soutenir et gérer les implantations depuis le siège de l'acheteur, indépendamment de l'intégrateur qui exécute les travaux."},
-    "about.p2":{en:"He has delivered multiple ERP projects on time and on budget for the Government of Canada, across multiple platforms. His value is the experienced counterpart a first-time client needs when sitting across from a seasoned integrator: someone who knows where programs drift, how scope erodes, and how to keep the engagement constructive without giving ground that matters.",fr:"Il a livré plusieurs projets de PGI dans les délais et le budget pour le gouvernement du Canada, sur plusieurs platformes. Sa valeur, c'est le vis-à-vis chevronné dont un client novice a besoin face à un intégrateur aguerri : quelqu'un qui sait où les programmes dérivent, comment la portée s'érode et comment garder le mandat constructif sans céder sur l'essentiel."},
+    "about.p2":{en:"He has delivered multiple ERP projects on time and on budget for the Government of Canada, across both SaaS ERP and SAP. His value is the experienced counterpart a first-time client needs when sitting across from a seasoned integrator: someone who knows where programs drift, how scope erodes, and how to keep the engagement constructive without giving ground that matters.",fr:"Il a livré plusieurs projets de PGI dans les délais et le budget pour le gouvernement du Canada, sur SaaS ERP comme sur SAP. Sa valeur, c'est le vis-à-vis chevronné dont un client novice a besoin face à un intégrateur aguerri : quelqu'un qui sait où les programmes dérivent, comment la portée s'érode et comment garder le mandat constructif sans céder sur l'essentiel."},
     "about.h3focus":{en:"Areas of focus",fr:"Domaines d'expertise"},
     "chip.1":{en:"Client-side ERP delivery",fr:"Livraison de PGI côté client"},
-    "chip.2":{en:"Workday",fr:"Workday"},
+    "chip.2":{en:"SaaS ERP",fr:"SaaS ERP"},
     "chip.3":{en:"SAP",fr:"SAP"},
     "chip.4":{en:"Government of Canada",fr:"Gouvernement du Canada"},
     "chip.5":{en:"Owner's representative",fr:"Représentant du propriétaire"},
@@ -613,13 +701,14 @@
     "chip.9":{en:"Program governance",fr:"Gouvernance de programme"},
     "about.h3how":{en:"How Martin works",fr:"La façon de travailler de Martin"},
     "about.pHow":{en:"Direct, responsive, and pragmatic. He sets clear boundaries early, reduces friction for everyone at the table, and optimizes for the long-standing relationship that tends to follow a well-run first engagement.",fr:"Direct, attentif et pragmatique. Il établit tôt des frontières claires, réduit les frictions pour tous les intervenants et privilégie la relation durable qui suit généralement un premier mandat bien mené."},
+    "about.note":{en:"Editable placeholder — replace bracketed items, the bio, and credentials with your final copy and any certifications (e.g. PMP), supply arrangements, or references you'd like to feature.",fr:"Texte modifiable — remplacez les éléments entre crochets, la biographie et les qualifications par votre version finale et les certifications (p. ex. PMP), arrangements en matière d'approvisionnement ou références à mettre en valeur."},
 
     "blog.eyebrow":{en:"Field notes",fr:"Notes de terrain"},
     "blog.h2":{en:"Notes from the client's side of the table.",fr:"Notes depuis le côté client de la table."},
     "blog.lede":{en:"Practical perspectives on running ERP programs, working with integrators, and protecting the buyer's interest.",fr:"Des perspectives concrètes sur la conduite des programmes de PGI, la collaboration avec les intégrateurs et la protection de l'intérêt de l'acheteur."},
     "blog.featCat":{en:"Featured",fr:"À la une"},
-    "blog.featH":{en:"Your Internal Team Can Run This Project. They Shouldn't Run It Alone.",fr:"Votre équipe interne peut mener ce projet. Elle ne devrait pas le mener seule."},
-    "blog.featP":{en:"Departments often assume internal staff can handle the client-side PM role on an ERP implementation. The real question isn't whether they're capable — it's whether they're negotiating against an experienced systems integrator without anyone in their corner who's done it before. A look at what the Phoenix pay system taught the federal government about independent project oversight, and why augment, not replace is the better model.",fr:"Les ministères présument souvent que le personnel interne peut assumer le rôle de représentant du propriétaire dans la mise en œuvre d'un PGI. La vraie question n'est pas de savoir s'il en est capable — c'est de savoir s'il négocie face à un intégrateur de systèmes expérimenté sans personne à ses côtés qui l'a déjà fait. Un survol de ce que le système de paye Phénix a appris au gouvernement fédéral sur la surveillance indépendante de projet, et pourquoi « soutenir, pas remplacer » est le meilleur modèle."},
+    "blog.featH":{en:"Why your internal team needs an independent PM — not a bigger SI contract",fr:"Pourquoi votre équipe interne a besoin d'un gestionnaire de projet indépendant — pas d'un plus gros contrat d'intégrateur"},
+    "blog.featP":{en:"The most common — and most expensive — misconception in ERP onboarding is that internal staff can absorb the program-management role. Here's the risk math that says otherwise.",fr:"L'idée fausse la plus répandue — et la plus coûteuse — lors d'une implantation de PGI, c'est que le personnel interne peut absorber le rôle de gestion de programme. Voici le calcul du risque qui prouve le contraire."},
     "blog.featBtn":{en:"Read the post →",fr:"Lire l'article →"},
     "blog.p1cat":{en:"Governance",fr:"Gouvernance"},
     "blog.p1h":{en:"Drawing the division-of-labor line before kickoff",fr:"Tracer la ligne de répartition des responsabilités avant le lancement"},
@@ -634,17 +723,42 @@
     "blog.p3p":{en:"How procurement's shift toward corporate delivery history is reshaping the way departments engage specialist consultants.",fr:"Comment le virage de l'approvisionnement vers les antécédents de livraison d'entreprise transforme la façon dont les ministères retiennent des conseillers spécialisés."},
     "blog.p3date":{en:"Draft · placeholder",fr:"Brouillon · à venir"},
 
-    "test.eyebrow":{en:"What clients say",fr:"Ce que disent nos clients"},
-    "test.h2":{en:"Repeat engagements speak for themselves.",fr:"Les mandats répétés parlent d'eux-mêmes."},
-    "q1p":{en:"Captiva gave us an experienced voice on our side of the table. Decisions that would have caught us out were flagged early — and our go-live held its date.",fr:"Captiva nous a offert une voix chevronnée de notre côté de la table. Les décisions qui nous auraient pris au dépourvu ont été signalées tôt — et notre mise en service a respecté sa date."},
-    "q1nm":{en:"[Client name]",fr:"[Nom du client]"},
-    "q1ro":{en:"Director, Financial Systems · Federal Department",fr:"Directrice, Systèmes financiers · Ministère fédéral"},
-    "q2p":{en:"The division-of-labor framework alone paid for the engagement. We always knew who owned what, and the integrator relationship stayed constructive throughout.",fr:"Le cadre de répartition des responsabilités à lui seul a rentabilisé le mandat. Nous savions toujours qui faisait quoi, et la relation avec l'intégrateur est restée constructive du début à la fin."},
-    "q2nm":{en:"[Client name]",fr:"[Nom du client]"},
-    "q2ro":{en:"Project Sponsor · Public Sector",fr:"Promoteur de projet · Secteur public"},
-    "q3p":{en:"Responsive, pragmatic, and genuinely independent. We've brought Captiva back for every phase since — exactly the long-standing relationship they describe.",fr:"Attentif, pragmatique et véritablement indépendant. Nous faisons appel à Captiva pour chaque phase depuis — exactement la relation durable qu'ils décrivent."},
-    "q3nm":{en:"[Client name]",fr:"[Nom du client]"},
-    "q3ro":{en:"CFO · Health Sector Organization",fr:"Chef des finances · Organisme du secteur de la santé"},
+    "case.eyebrow":{en:"Case studies",fr:"Études de cas"},
+    "case.h2":{en:"What the work actually looks like.",fr:"À quoi ressemble le travail, concrètement."},
+    "case.lede":{en:"Client organizations are not named. Each engagement below is described at sector level to respect confidentiality and security requirements.",fr:"Les organisations clientes ne sont pas nommées. Chaque mandat ci-dessous est décrit au niveau sectoriel afin de respecter les exigences de confidentialité et de sécurité."},
+    "case.lblSit":{en:"Situation",fr:"Situation"},
+    "case.lblStake":{en:"What was at stake",fr:"Les enjeux"},
+    "case.lblDid":{en:"What we did",fr:"Notre intervention"},
+    "case.lblOut":{en:"Outcome",fr:"Résultat"},
+    "case.note":{en:"References are available on request, subject to client approval.",fr:"Des références peuvent être fournies sur demande, sous réserve de l'approbation du client."},
+
+    "caseA.t":{en:"SaaS ERP Financials implementation at a federal agency",fr:"Implantation de SaaS ERP Financials dans une agence fédérale"},
+    "caseA.tag":{en:"SaaS ERP Financials",fr:"SaaS ERP Financials"},
+    "caseA.sit":{en:"A federal agency's legacy financial management system was outdated and at risk of failure. Having procured a SaaS ERP solution, the agency needed to implement SaaS ERP Financials across configuration, integrations, data conversion, testing, training and cutover — with a major consulting firm as implementation partner and central-agency oversight in the mix.",fr:"Le système de gestion financière hérité d'une agence fédérale était désuet et risquait la défaillance. Après avoir acquis une solution PGI en mode SaaS, l'agence devait implanter SaaS ERP Financials : configuration, intégrations, conversion des données, essais, formation et mise en service — avec un grand cabinet-conseil comme partenaire d'implantation et la surveillance d'un organisme central."},
+    "caseA.stake":{en:"A SaaS ERP go-live on a fixed target date, a multi-million-dollar budget, and integrations with external systems including federal payment and receipt processing. A missed date meant running a failing system for another year.",fr:"Une mise en service de PGI en mode SaaS à une date fixe, un budget de plusieurs millions de dollars et des intégrations avec des systèmes externes, dont le traitement fédéral des paiements et des recettes. Rater la date signifiait exploiter un système défaillant une année de plus."},
+    "caseA.did":{en:"Held the client-side project management seat for 23 months — baselining scope, schedule and cost; running the risk register and mitigation plan; coordinating across the vendor, the implementation partner and the central agency; managing integration design and testing; reporting bilingually to the steering committee; and owning cutover planning and execution.",fr:"Captiva Consulting a occupé le siège de la gestion de projet côté client pendant 23 mois : établissement des références de portée, d'échéancier et de coûts; tenue du registre des risques et du plan d'atténuation; coordination entre le fournisseur, le partenaire d'implantation et l'organisme central; gestion de la conception et des essais d'intégration; production de rapports bilingues au comité directeur; planification et exécution de la mise en service."},
+    "caseA.out":{en:"Delivered on time and on budget, with transition to sustainment teams and a documented lessons-learned.",fr:"Livré dans les délais et le budget, avec transfert aux équipes de maintien en service et une séance de leçons apprises documentée."},
+
+    "caseB.t":{en:"SaaS ERP HCM implementation in a high-security environment",fr:"Implantation de SaaS ERP HCM dans un environnement de haute sécurité"},
+    "caseB.tag":{en:"SaaS ERP HCM",fr:"SaaS ERP HCM"},
+    "caseB.sit":{en:"A federal organization with elevated security requirements replaced an aging HR system with a cloud-based Human Capital Management solution — one of the early departments to bring that platform into the federal environment, under the oversight of multiple central agencies and a separate contract authority.",fr:"Une organisation fédérale ayant des exigences de sécurité élevées a remplacé un système de RH vieillissant par une solution infonuagique de gestion du capital humain — parmi les premiers ministères à introduire cette plateforme dans l'environnement fédéral, sous la surveillance de plusieurs organismes centraux et d'une autorité contractante distincte."},
+    "caseB.stake":{en:"An organization with elevated security requirements deploying SaaS for the first time. Security assessment and authority to operate were gating items. Being an early adopter meant no internal precedent to follow and heavy external scrutiny.",fr:"Une organisation aux exigences de sécurité élevées déployait du SaaS pour la première fois. L'évaluation de sécurité et l'autorisation d'exploitation étaient des jalons bloquants. Le statut de précurseur signifiait aucun précédent interne et une surveillance externe soutenue."},
+    "caseB.did":{en:"Led the implementation end to end — configuring the solution to match actual workflows rather than forcing process to fit defaults; managing change management, business process alignment and legacy integration workstreams; working with security professionals to articulate requirements through to security assessment and authorization; managing risk, issue and decision logs; and reporting weekly in both official languages to a steering committee of directors general and assistant deputy ministers.",fr:"Captiva Consulting a dirigé l'implantation de bout en bout : configuration de la solution selon les flux de travail réels plutôt que d'adapter les processus aux paramètres par défaut; gestion des volets de gestion du changement, d'harmonisation des processus opérationnels et d'intégration des systèmes hérités; collaboration avec les spécialistes de la sécurité pour formuler les exigences jusqu'à l'évaluation et l'autorisation de sécurité; tenue des registres de risques, d'enjeux et de décisions; production de rapports hebdomadaires dans les deux langues officielles à un comité directeur composé de directeurs généraux et de sous-ministres adjoints."},
+    "caseB.out":{en:"Successful deployment of the HCM solution, with streamlined processes, improved data management, and a security posture accepted by the authorities involved.",fr:"Déploiement réussi de la solution de GCH, avec des processus simplifiés, une meilleure gestion des données et une posture de sécurité acceptée par les autorités concernées."},
+
+    "caseC.t":{en:"SAP financial systems replacement, multi-department cluster",fr:"Remplacement de systèmes financiers SAP en grappe multiministérielle"},
+    "caseC.tag":{en:"SAP",fr:"SAP"},
+    "caseC.sit":{en:"A federal organization ran its finances on multiple disparate systems that didn't integrate, driving errors and manual reporting effort. The fix was onboarding to a shared SAP cluster hosted by another department — with a second department onboarding in parallel.",fr:"Une organisation fédérale gérait ses finances au moyen de plusieurs systèmes disparates non intégrés, source d'erreurs et de travail manuel de production de rapports. La solution consistait à migrer vers une grappe SAP partagée hébergée par un autre ministère — un second ministère migrant en parallèle."},
+    "caseC.stake":{en:"Four stakeholder organizations, none of which reported to each other. The host department owned the solution; the client was a paying customer with limited leverage. Misalignment between them was the single biggest schedule risk.",fr:"Quatre organisations parties prenantes, sans lien hiérarchique entre elles. Le ministère hôte était propriétaire de la solution; le client n'était qu'un payeur au pouvoir limité. Leur désalignement constituait le principal risque pour l'échéancier."},
+    "caseC.did":{en:"Ran the project across business process reengineering, organizational change management, interface development, data conversion and readiness — and deliberately built the working relationships between the client, the host department, the parallel-onboarding department and the infrastructure provider, identifying direct team-to-team channels so work wasn't bottlenecked by hierarchy.",fr:"Captiva Consulting a piloté le projet sur les plans de la refonte des processus opérationnels, de la gestion du changement organisationnel, du développement des interfaces, de la conversion des données et de la préparation — et a délibérément bâti les relations de travail entre le client, le ministère hôte, le ministère migrant en parallèle et le fournisseur d'infrastructure, en établissant des canaux directs entre équipes pour éviter les goulots hiérarchiques."},
+    "caseC.out":{en:"Delivered on plan, with two legacy systems retired into one integrated solution.",fr:"Livré conformément au plan, avec le retrait de deux systèmes hérités au profit d'une solution intégrée unique."},
+
+    "caseD.t":{en:"SAP replacement with cost-recovery reengineering",fr:"Remplacement SAP avec refonte du recouvrement des coûts"},
+    "caseD.tag":{en:"SAP",fr:"SAP"},
+    "caseD.sit":{en:"A federal regulator was running finance on three legacy systems plus a sprawl of departmental databases, and onboarded to a shared SAP cluster.",fr:"Un organisme de réglementation fédéral gérait ses finances au moyen de trois systèmes hérités et d'une multitude de bases de données ministérielles, puis a migré vers une grappe SAP partagée."},
+    "caseD.stake":{en:"More than a system swap — the mandate included reducing support cost drivers and reengineering cost-recovery and revenue processes so the organization could invoice and collect fees with defensible data. That meant changing every finance and materiel process, and the roles around them.",fr:"Bien plus qu'un changement de système : le mandat comprenait la réduction des inducteurs de coûts de soutien et la refonte des processus de recouvrement des coûts et de gestion des revenus afin que l'organisation puisse facturer et percevoir ses frais à partir de données défendables. Cela supposait de transformer tous les processus financiers et matériels, ainsi que les rôles qui s'y rattachent."},
+    "caseD.did":{en:"Provided senior project management and strategic guidance to senior management across the full system development and project management life cycles, using the vendor's own delivery methodology. Led business and IT teams through process redesign, change management, data cleansing and migration, and ran employee working sessions to define the target operating culture rather than imposing it.",fr:"Captiva Consulting a assuré la gestion de projet principale et l'orientation stratégique auprès de la haute direction tout au long des cycles de vie du développement de systèmes et de la gestion de projet, en s'appuyant sur la méthodologie de livraison du fournisseur. A dirigé les équipes opérationnelles et TI dans la refonte des processus, la gestion du changement, le nettoyage et la migration des données, et a animé des séances de travail avec les employés pour définir la culture opérationnelle cible plutôt que de l'imposer."},
+    "caseD.out":{en:"Delivered on plan, with three legacy systems consolidated and cost-recovery processes rebuilt for transparency and collection.",fr:"Livré conformément au plan, avec la consolidation de trois systèmes hérités et la refonte des processus de recouvrement des coûts au profit de la transparence et de la perception."},
 
     "contact.eyebrow":{en:"Get in touch",fr:"Communiquez avec nous"},
     "contact.h2":{en:"Let's talk about your program.",fr:"Parlons de votre programme."},
@@ -658,15 +772,17 @@
     "form.msgLbl":{en:"How can we help?",fr:"Comment pouvons-nous aider?"},
     "form.msgPh":{en:"A sentence or two about your program and where you are in it.",fr:"Une phrase ou deux sur votre programme et où vous en êtes."},
     "form.send":{en:"Send message →",fr:"Envoyer le message →"},
+    "form.ok":{en:"Thanks — your message is ready. Connect this form to your email service or inbox to receive it.",fr:"Merci — votre message est prêt. Reliez ce formulaire à votre service de courriel pour le recevoir."},
     "form.note":{en:"This form is a front-end placeholder. Wire it to your email service (e.g. Formspree, or a mailto link) before launch.",fr:"Ce formulaire est un espace réservé côté client. Reliez-le à votre service de courriel (p. ex. Formspree ou un lien mailto) avant le lancement."},
     "aside.eyebrow":{en:"Captiva Consulting",fr:"Captiva Consulting"},
     "aside.h3":{en:"Direct &amp; responsive.",fr:"Direct et attentif."},
     "aside.emailLbl":{en:"Email",fr:"Courriel"},
     "aside.phoneLbl":{en:"Phone",fr:"Téléphone"},
-    "aside.phoneVal":{en:"613-298-9145",fr:"613-298-9145"},
+    "aside.phoneVal":{en:"[Add phone]",fr:"[Ajouter le téléphone]"},
     "aside.locLbl":{en:"Location",fr:"Emplacement"},
     "aside.locVal":{en:"Ottawa, Ontario, Canada",fr:"Ottawa (Ontario), Canada"},
     "aside.prinLbl":{en:"Principal",fr:"Consultant principal"},
+    "aside.note":{en:"Replace the contact details above with your live address, phone, and email.",fr:"Remplacez les coordonnées ci-dessus par votre adresse, téléphone et courriel réels."},
 
     "subscribe.h3":{en:"Field notes, a few times a year.",fr:"Des notes de terrain, quelques fois par an."},
     "subscribe.p":{en:"Occasional, practical writing on client-side ERP delivery. No spam — unsubscribe anytime.",fr:"Des textes pratiques et occasionnels sur la livraison de PGI côté client. Aucun pourriel — désabonnement en tout temps."},
@@ -706,46 +822,7 @@
     document.getElementById('menu').classList.remove('open');
     window.scrollTo({top:0,behavior:'auto'});
   }
-  /*function sendContact(){ document.getElementById('contactOk').classList.add('show'); }*/
-
-  //Web3Forms javascript code to submit messages
-  const form = document.getElementById('form');
-  const submitBtn = form.querySelector('button[type="submit"]');
-  
-  form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-  
-      const formData = new FormData(form);
-      formData.append("access_key", "13bab806-f0b4-4877-bc04-ab99d142189b");
-  
-      const originalText = submitBtn.textContent;
-  
-      submitBtn.textContent = "Sending...";
-      submitBtn.disabled = true;
-  
-      try {
-          const response = await fetch("https://api.web3forms.com/submit", {
-              method: "POST",
-              body: formData
-          });
-  
-          const data = await response.json();
-  
-          if (response.ok) {
-              alert("Success! Your message has been sent.");
-              form.reset();
-          } else {
-              alert("Error: " + data.message);
-          }
-  
-      } catch (error) {
-          alert("Something went wrong. Please try again.");
-      } finally {
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-      }
-  });
-  
+  function sendContact(){ document.getElementById('contactOk').classList.add('show'); }
   function subscribe(){ document.getElementById('subOk').classList.add('show'); }
 
   document.getElementById('yr').textContent=new Date().getFullYear();
